@@ -12,7 +12,7 @@ import cucumber.api.java.en.When;
 
 public class LoginTest {
 	
-	String baseURL = "http://newtours.demoaut.com/";
+	String baseURL = "https://s1.demo.opensourcecms.com/wordpress/wp-login.php ";
 	String driverpath = "C:\\Users\\d.khera\\Downloads\\chromedriver_win32\\chromedriver.exe";
 	WebDriver driver;
 	
@@ -28,26 +28,24 @@ public class LoginTest {
 	@When("^User enters credentials$")
 	public void user_enters_credentials() {
 	    // Write code here that turns the phrase above into concrete actions
-		WebElement uname = driver.findElement(By.xpath(
-				"/html/body/div/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[2]/td[3]/form/table/tbody/tr[4]/td/table/tbody/tr[2]/td[2]/input"));
-		WebElement pass = driver.findElement(By.xpath(
-				"/html/body/div/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[2]/td[3]/form/table/tbody/tr[4]/td/table/tbody/tr[3]/td[2]/input"));
-		uname.sendKeys("mercury");
-		pass.sendKeys("mercury");
+		WebElement uname = driver.findElement(By.xpath("//*[@id=\"user_login\"]"));
+		WebElement pass = driver.findElement(By.xpath("//*[@id=\"user_pass\"]"));
+		uname.sendKeys("opensourcecms");
+		pass.sendKeys("opensourcecms");
 	}
 
 	@When("^Clicks on Sign-in button$")
 	public void clicks_on_Sign_in_button(){
 	    // Write code here that turns the phrase above into concrete actions
 		WebElement signin = driver.findElement(By.xpath(
-				"/html/body/div/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[2]/td[3]/form/table/tbody/tr[4]/td/table/tbody/tr[4]/td[2]/div/input"));
+				"//*[@id=\"wp-submit\"]"));
 		signin.click(); 
 	}
 
 	@Then("^user should be able to login$")
 	public void user_should_be_able_to_login(){
 	    // Write code here that turns the phrase above into concrete actions
-		String expectedTitle = "Welcome: Mercury Tours";
+		//String expectedTitle = "Dashboard ‹ opensourcecms — WordPress";
         String actualTitle = driver.getTitle();
         System.out.println(actualTitle);;
 	}
